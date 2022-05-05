@@ -1,6 +1,5 @@
 // Birthday cake: Return the number of largest values from an array of numbers
-var candles =[3,2,1,3]
-var test = [18,90,90,13,90,75,90,8,90,43]
+// Notes about: Keep track of the highest value, if a larger one is encountered, reset count to 0. 
 function birthdayCake (candles){
     var count = 0;
     var tallest = candles[0];
@@ -11,15 +10,41 @@ function birthdayCake (candles){
             if(candles[i] > tallest){
                 tallest = candles[i];
                 count = 0;
-                console.log("i reset to" + candles[i])
             }
             if (candles[i] == tallest){
                 count ++;
-                console.log("I added to" + candles[i]);
             }
         }
         return count;
     }
 }
+var candles =[3,2,1,3]
 // console.log(birthdayCake(candles));
-console.log(birthdayCake(test));
+//Converts 12 hour time to Military, accounting for midnight and noon edge cases
+function timeConversion(time){
+    var Realhrs = time.slice(0,2);
+    var hrs = parseInt(Realhrs);
+    var afterHrs='';
+    var final = hrs.toString();
+    for(var i=2; i<8; i++){
+        afterHrs = afterHrs + time[i];
+    }
+    if(time.includes("AM") && Realhrs=="12"){
+        time.replace('AM', '');
+        final = "00"
+        return (final + afterHrs);
+    } else if(time.includes("AM")){
+        return(final + afterHrs);
+    } else if(time.includes("PM") && Realhrs =="12"){
+        var Military = hrs + 0;
+        final = Military.toString();
+        return (final + afterHrs);
+    } else{
+        var Military = hrs + 12;
+        final = Military.toString();
+        return (final + afterHrs);
+    }
+    
+}
+console.log(timeConversion("06:40:03AM"));
+console.log(timeConversion("04:59:59AM"));
