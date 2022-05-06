@@ -29,22 +29,31 @@ function timeConversion(time){
     for(var i=2; i<8; i++){
         afterHrs = afterHrs + time[i];
     }
-    if(time.includes("AM") && Realhrs=="12"){
-        time.replace('AM', '');
-        final = "00"
-        return (final + afterHrs);
-    } else if(time.includes("AM")){
-        return(final + afterHrs);
-    } else if(time.includes("PM") && Realhrs =="12"){
-        var Military = hrs + 0;
-        final = Military.toString();
-        return (final + afterHrs);
-    } else{
-        var Military = hrs + 12;
-        final = Military.toString();
+    if(time.includes("AM") && Realhrs != "12"){
+        console.log("Not noonmidnight AM")
+        return(Realhrs + afterHrs);
+    }
+    if(time.includes("PM") && Realhrs != "12"){
+        hrs += 12;
+        final = hrs.toString();
+        console.log("Not noonmidnight PM")
         return (final + afterHrs);
     }
+    if(time.includes("AM") && Realhrs =="12"){
+        final = "00";
+        console.log("midnight");
+        return (final + afterHrs);
+    }
+    if(time.includes("PM") && Realhrs =="12"){
+        final = "12";
+        console.log("noon");
+        return(final + afterHrs);
+    }
+}
+
+// Clique Algo...Turan's Theorem? Not totally sure what I'm doing, but the expected output is 
+// an integer representing the smallest number of edges a geometric shape will have given a number of points and 
+//edges or lines. 
+function clique(n,m){
     
 }
-console.log(timeConversion("06:40:03AM"));
-console.log(timeConversion("04:59:59AM"));
