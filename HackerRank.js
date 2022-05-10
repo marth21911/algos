@@ -80,6 +80,35 @@ function Grades(grades){
     console.log(newGrades);
     return newGrades;
 }
+//Straigtforward problem, check if values fall in a range and keep count. Hardest part was figuring out how
+//Hacker rank wanted return formatted. Which is different. Wanted returns on separate lines. Weird flex
+function ApplesOranges(s,t,a,b,apple,oranges){
+    var aCount=0;
+    var oCount=0;
+    console.log("House starts at " + s)
+    console.log("House ends at " + t)
+    console.log("The apple tree is at " + a);
+    console.log("The orange tree is at " + b)
+    for(var i=0;i<apple.length;i++){
+        console.log("The apple is at " + (apple[i] + a));
+        if ((apple[i] + a)  >= s && (apple[i] + a) <= t){
+            console.log("adding to apples " + apples[i]);
+            aCount++
+        }
+    }
+    for(var j=0;j<oranges.length;j++){
+        console.log("The orange is at "+ oranges[j])
+        if((oranges[j]+b) <=t && (oranges[j] + b) >= s){
+            console.log("adding to oranges " + oranges[j]);
+            oCount++
+        }
+    }
+console.log(aCount);
+console.log(oCount);
+return ApplesOranges.aCount()
+.then(oCount);
+}
 
-var test=[59,66,38,79,80,39];
-Grades(test)
+var apples=[1,3,5,7,8]
+var oranges = [2,5,6,8]
+ApplesOranges(3,5,1,7,apples,oranges)
