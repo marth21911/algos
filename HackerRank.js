@@ -54,61 +54,92 @@
 //Grading students: Round values to next modulus of 5, if within 3. cut off at 40, anything below fails.
 //Ran into numerous issues building single function, break wouldnt work properly.
 //Functions well calling a second function, which is essentially just the nested for loop.
-function upCounter(num){
-    var original= num;
-    for(var i=0; i<2;i++){
-        num++
-        if(num % 5 ==0){
-            return num;}
-        }
-    if(!num % 5 == 0|| num % 5 == 0){
-        return original
-    }
-}
-function Grades(grades){
-    var newGrades=[];
-    for(var i=0; i<= grades.length; i++) {
-        console.log(i)
-        if(grades[i] <= 37){
-            console.log("Failing grade below 40");
-            newGrades.push(grades[i]);
-        }if(grades[i]>=38){
-            console.log("doing math")
-            newGrades.push(upCounter(grades[i]));
-            }
-        }
-    console.log(newGrades);
-    return newGrades;
-}
+// function upCounter(num){
+//     var original= num;
+//     for(var i=0; i<2;i++){
+//         num++
+//         if(num % 5 ==0){
+//             return num;}
+//         }
+//     if(!num % 5 == 0|| num % 5 == 0){
+//         return original
+//     }
+// }
+// function Grades(grades){
+//     var newGrades=[];
+//     for(var i=0; i<= grades.length; i++) {
+//         console.log(i)
+//         if(grades[i] <= 37){
+//             console.log("Failing grade below 40");
+//             newGrades.push(grades[i]);
+//         }if(grades[i]>=38){
+//             console.log("doing math")
+//             newGrades.push(upCounter(grades[i]));
+//             }
+//         }
+//     console.log(newGrades);
+//     return newGrades;
+// }
 //Straigtforward problem, check if values fall in a range and keep count. Hardest part was figuring out how
 //Hacker rank wanted return formatted. Which is different. Wanted returns on separate lines. Weird flex
-function ApplesOranges(s,t,a,b,apple,oranges){
-    var aCount=0;
-    var oCount=0;
-    console.log("House starts at " + s)
-    console.log("House ends at " + t)
-    console.log("The apple tree is at " + a);
-    console.log("The orange tree is at " + b)
-    for(var i=0;i<apple.length;i++){
-        console.log("The apple is at " + (apple[i] + a));
-        if ((apple[i] + a)  >= s && (apple[i] + a) <= t){
-            console.log("adding to apples " + apples[i]);
-            aCount++
-        }
-    }
-    for(var j=0;j<oranges.length;j++){
-        console.log("The orange is at "+ oranges[j])
-        if((oranges[j]+b) <=t && (oranges[j] + b) >= s){
-            console.log("adding to oranges " + oranges[j]);
-            oCount++
-        }
-    }
-console.log(aCount);
-console.log(oCount);
-return ApplesOranges.aCount()
-.then(oCount);
-}
+// function ApplesOranges(s,t,a,b,apple,oranges){
+//     var aCount=0;
+//     var oCount=0;
+//     console.log("House starts at " + s)
+//     console.log("House ends at " + t)
+//     console.log("The apple tree is at " + a);
+//     console.log("The orange tree is at " + b)
+//     for(var i=0;i<apple.length;i++){
+//         console.log("The apple is at " + (apple[i] + a));
+//         if ((apple[i] + a)  >= s && (apple[i] + a) <= t){
+//             console.log("adding to apples " + apples[i]);
+//             aCount++
+//         }
+//     }
+//     for(var j=0;j<oranges.length;j++){
+//         console.log("The orange is at "+ oranges[j])
+//         if((oranges[j]+b) <=t && (oranges[j] + b) >= s){
+//             console.log("adding to oranges " + oranges[j]);
+//             oCount++
+//         }
+//     }
+// console.log(aCount);
+// console.log(oCount);
+// return ApplesOranges.aCount()
+// .then(oCount);
+// }
 
-var apples=[1,3,5,7,8]
-var oranges = [2,5,6,8]
-ApplesOranges(3,5,1,7,apples,oranges)
+// var apples=[1,3,5,7,8]
+// var oranges = [2,5,6,8]
+// ApplesOranges(3,5,1,7,apples,oranges)
+
+//Kangaroo jump function: Find if two kangaroos meet based on their rate of travel. Return boolean
+
+function kangaroo(x1,v1,x2,v2){
+    var leader = Math.max(x1,x2);
+    var follower = Math.min(x1,x2);
+    var distance = (leader-follower);
+    while(leader >= follower){
+        if(follower>leader){
+            console.log("Follower overtook leader")
+            return ("NO")
+        }
+        if(leader == follower){
+            return ("YES");
+        }else{
+            console.log("moving along");
+            x1 +=v1;
+            x2 += v2;
+            leader = Math.max(x1,x2);
+            follower= Math.min (x1,x2);
+            console.log("Leader "+leader);
+            console.log("Follower "+follower);
+            if((leader-follower) >= distance){
+                console.log("Leader outran follower");
+                return ("NO");
+            }
+        }
+    }
+
+}
+console.log(kangaroo(0,3,4,2))
