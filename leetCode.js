@@ -78,29 +78,86 @@ function twosum(nums,target){
 }
 
 function merge(nums1, m, nums2, n){
-    var newArr = [];
-    for(var i=0; i<(m+n);i++){
-        console.log(i);
-        console.log("Comparing " + nums1[0] + " and " + nums2[0]);
-        if(nums1[0]<=nums2[0] && nums1[0]!=0){
-            console.log("if")
-            newArr.push(nums1[0]);
-            nums1.shift();
-            
-        }else{
-            console.log("else")
-            newArr.push(nums2[0]);
-            nums2.shift();
+    for(var k=0; k<n; k++){
+        nums1.pop();
+    }
+    console.log(nums1);
+    for(var i=0; i<nums2.length;i++){
+        nums1.push(nums2[i])
+        console.log("Main loop: " + (i+1));
+        for(var j=nums1.length-1; j>0;j--){
+            if(nums1[j-1] > nums1[j]){
+                console.log("Comparing: j "+ nums1[j] + " vs j-1: " + nums1[j-1] );
+                var temp = nums1[j];
+                nums1[j] = nums1[j-1];
+                nums1[j-1]= temp;
+            }
         }
     }
-    nums1= newArr
-    console.log(nums1);
     return nums1
 }
 
 
-var x=[1,2,3,0,0,0]
-var y= 3
-var z= [2,5,6]
-var c= 3
-console.log(merge(x,y,z,c));
+function intersect(nums1,nums2){
+    var newArr=[]
+    if(nums1.length<=nums2.length) {
+        for (var i=0;i<nums1.length;i++) {
+            if(nums2.indexOf(nums1[i])>-1){
+                newArr.push(nums1[i]);
+                nums2.splice(nums2.indexOf(nums1[i]),1);
+            }
+        }
+
+    }
+    else {
+        for (var i=0;i<nums2.length;i++) {
+            if(nums1.indexOf(nums2[i])>-1){
+                newArr.push(nums2[i]);
+                nums1.splice(nums1.indexOf(nums2[i]),1);
+            }
+        }
+    }
+    return newArr;
+}
+
+function maxProfit(prices){
+    var minBuy = {price:prices[0], index:0}
+    var maxSell= {price:prices[1], index:1};
+    if(prices.length<2){
+        return 0;
+    }
+    for(var i=1; i<prices.length;i++){
+        if(prices[i]>maxSell.price){
+            maxSell={price:prices[i], index: i};
+        }
+    }
+    for(var j=0; j<prices.length; j++){
+        if(prices[j] < minBuy.price && maxSell.index > j){
+            minBuy={price:prices[j], index:j};
+        }
+    }
+    if(maxSell.price-minBuy.price< 0){
+        return 0;
+    }else{
+        return (maxSell.price-minBuy.price);
+    }
+    
+}
+function altMax(prices){
+    let left = 0; // Buy
+    let right = 1; // sell
+    let max_profit = 0;
+    while (right < prices.length) {
+        if (prices[left] < prices[right]) {
+        let profit = prices[right] - prices[left]; // our current profit
+
+        max_profit = Math.max(max_profit, profit);
+    } else {
+        left = right;
+    }
+    right++;
+    }
+    return max_profit;
+}
+var test=[7,1,5,3,6,4];
+console.log(maxProfit(test));
