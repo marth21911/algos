@@ -159,5 +159,72 @@ function altMax(prices){
     }
     return max_profit;
 }
-var test=[7,1,5,3,6,4];
-console.log(maxProfit(test));
+
+var fib = function(n) {
+    if(n<=1){
+        return n;
+    }
+    return fib(n-1)+fib(n-1);
+}
+
+function tribonacci(n){
+    var numbers = []
+    for(var i=0; i<=n; i++){
+        if(i==0){
+            numbers.push(0)
+        }
+        if(i==1||i==2){
+            numbers.push(1)
+        }
+        if(i>2){
+            numbers.push((numbers[i-1]+numbers[i-2]+numbers[i-3]));
+            console.log("doin math " + (numbers[i-1]+numbers[i-2]+numbers[i-3]));
+        }
+    }
+    console.log(numbers);;
+    console.log(numbers[n]);
+    return numbers[n];
+}
+
+// function climbStairs(n){
+//     var partA = n;
+//     var partB = n;
+//     var temp = 0;
+//     for(var i=n-1; n>=0;n--){
+//         temp = partA;
+//         partA = partA + partB
+//         partB=temp;
+//     }
+//     console.log(partA);
+//     return partA;
+// }
+// climbStairs(2);
+// climbStairs(10);
+function costStairs(cost){
+    console.log("Cost length is " + cost.length);
+    var i =0;
+
+    if(cost[0]>cost[1]){
+        i = 1;
+    }
+    var total= cost[i];
+    console.log("Starting cost is: " + total);
+    while(i < cost.length-1){
+        if(cost[i+1]>=cost[i+2] && i+2 != null){
+            i+=2;
+            total += cost[i]
+            console.log("loop, i = " + i + " value is: " + cost[i]);
+            console.log("total cost is: " + total);
+        }else if(i+1 != null){
+            i+=1;
+            total += cost[i];
+            console.log("loop, i = " + i + " value is: " + cost[i]);
+            console.log("total cost is: " + total);
+        }else{
+            return total
+        }
+    }
+    return total
+}
+var test =[1,100,1,1,1,100,1,1,100,1];
+console.log(costStairs(test));
