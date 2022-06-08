@@ -200,31 +200,48 @@ function tribonacci(n){
 // }
 // climbStairs(2);
 // climbStairs(10);
-function costStairs(cost){
-    console.log("Cost length is " + cost.length);
-    var i =0;
+// function costStairs(cost){
+//     console.log("Cost length is " + cost.length);
+//     var i =0;
 
-    if(cost[0]>cost[1]){
-        i = 1;
-    }
-    var total= cost[i];
-    console.log("Starting cost is: " + total);
-    while(i < cost.length-1){
-        if(cost[i+1]>=cost[i+2] && i+2 != null){
+//     if(cost[0]>cost[1]){
+//         i = 1;
+//     }
+//     var total= cost[i];
+//     console.log("Starting cost is: " + total);
+//     while(i < cost.length-1){
+//         if(cost[i+1]>=cost[i+2] && i+2 != null){
+//             i+=2;
+//             total += cost[i]
+//             console.log("loop, i = " + i + " value is: " + cost[i]);
+//             console.log("total cost is: " + total);
+//         }else if(i+1 != null){
+//             i+=1;
+//             total += cost[i];
+//             console.log("loop, i = " + i + " value is: " + cost[i]);
+//             console.log("total cost is: " + total);
+//         }else{
+//             return total
+//         }
+//     }
+//     return total
+// }
+// var test =[1,100,1,1,1,100,1,1,100,1];
+// console.log(costStairs(test));
+function rob(nums){
+    var max=0;
+    for(var i=0; i<nums.length; i){
+        console.log("looping " + i);
+        console.log("Comparing " + nums[i] + " and "+ (nums[i+1]+nums[i+2]));
+        if((nums[i]+nums[i+2])>=(nums[i+1])){
+            max+= nums[i];
             i+=2;
-            total += cost[i]
-            console.log("loop, i = " + i + " value is: " + cost[i]);
-            console.log("total cost is: " + total);
-        }else if(i+1 != null){
-            i+=1;
-            total += cost[i];
-            console.log("loop, i = " + i + " value is: " + cost[i]);
-            console.log("total cost is: " + total);
         }else{
-            return total
+            i++
         }
+        
     }
-    return total
+    return max;
 }
-var test =[1,100,1,1,1,100,1,1,100,1];
-console.log(costStairs(test));
+var test = [1,2,3,1];
+console.log(rob(test))
