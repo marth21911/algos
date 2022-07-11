@@ -228,20 +228,117 @@ function tribonacci(n){
 // }
 // var test =[1,100,1,1,1,100,1,1,100,1];
 // console.log(costStairs(test));
-function rob(nums){
-    var max=0;
-    for(var i=0; i<nums.length; i){
-        console.log("looping " + i);
-        console.log("Comparing " + nums[i] + " and "+ (nums[i+1]+nums[i+2]));
-        if((nums[i]+nums[i+2])>=(nums[i+1])){
-            max+= nums[i];
-            i+=2;
-        }else{
-            i++
-        }
+// function rob(nums){
+//     var max=0;
+//     for(var i=0; i<nums.length; i){
+//         console.log("looping " + i);
+//         console.log("Comparing " + nums[i] + " and "+ (nums[i+1]+nums[i+2]));
+//         if((nums[i]+nums[i+2])>=(nums[i+1])){
+//             max+= nums[i];
+//             i+=2;
+//         }else{
+//             i++
+//         }
         
+//     }
+//     return max;
+// }
+// var test = [1,2,3,1];
+// console.log(rob(test))
+
+// function addTwoNumbers (l1,l2){
+//     let one ="";
+//     let two = "";
+//     let three= 0;
+//     var answer=[];
+//     console.log(l1.length);
+//     for(var i=l1.length-1; i>=0; i--){
+//         console.log("Li entry " + l1[i])
+//         one+=toString(l1[i]);
+//     }
+//     for(var j=l2.lenth-1; j>=0; j--){
+//         console.log("l2 entry "+l2[j])
+//         two+=toString(l2[j]);
+//     }
+//     console.log("One : " + one + " Two: "+ two);
+//     one=parseInt(one);
+//     console.log(one);
+//     two=parseInt(two);
+//     console.log(two);
+//     three = (one+two);
+//     console.log(three);
+//     three = toString(three);
+//     for(var k=three.length-1; k>=0; k--){
+//         console.log("Answer entry " + three[k]);
+//         answer.push(three[k]);
+//     }
+//     return answer;
+// }
+// console.log(addTwoNumbers([2,4,3],[5,6,4]) + "test");
+
+// var mySqrt = function(x) {
+//     var base=1;
+//     var max = (x/2);
+//     if(x==1){
+//         return 1
+//     }
+//     while(max>=base){
+//         var mid= base+(max-base)/2;
+//         console.log("mid "+mid)
+//         if(mid*mid==x){
+//             console.log("mid final "+mid)
+//             return Math.floor(mid)
+//         }
+//         if(mid >(x/mid)){
+//             max = mid-1;
+//             console.log("max "+max)
+//             }else{
+//             base= mid+1;
+//             console.log("base "+base)
+//         }
+//     }
+//     return max;
+// };
+// console.log(mySqrt(1024));
+
+// function letters(letters,target){
+//     var tarVal=target.charCodeAt(0);
+//     console.log(tarVal);
+//     for(var i=0; i<letters.length; i++){
+//         var test= letters[i]
+//         var numTest= test.charCodeAt(0)
+//         if(numTest > tarVal){
+//             return letters[i]
+//         }
+//     }
+// }
+// console.log(letters(["c","f","j"],"d"))
+
+var lengthOfLongestSubstring = function(s) {
+    let max=0;
+    let current=0;
+    let start=0
+    let test=[]
+    for(var i=0;i<s.length;i++){
+        console.log("Loop "+ i)
+        console.log("test string " + test)
+        console.log("max is " + max + " current is " + current)
+        if(test.includes(s[i])){
+            if(current>max){
+                max=current;
+            }
+            current=0;
+            test=[]
+            i=start+1
+        }
+        if(!test.includes(s[i])){
+            if(test.length==0){
+                start=i
+            }
+            test.push(s[i])
+            current ++;
+        }
     }
-    return max;
-}
-var test = [1,2,3,1];
-console.log(rob(test))
+    return Math.max(current, max)
+};
+console.log(lengthOfLongestSubstring("dvdf"))
